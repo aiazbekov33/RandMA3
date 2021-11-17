@@ -1,5 +1,7 @@
 plugins {
     id 'com.android.application'
+    //navigation save args
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -40,4 +42,11 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    //Navigation component
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+
+
+
+
 }
