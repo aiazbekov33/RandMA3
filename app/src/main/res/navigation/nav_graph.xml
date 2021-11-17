@@ -5,6 +5,9 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/characterFragment">
 
+    <action android:id="@+id/action_global_detailFragment"
+        app:destination="@id/detailFragment"/>
+
     <fragment
         android:id="@+id/characterFragment"
         android:name="com.example.randma3.ui.fragments.character.CharacterFragment"
@@ -20,4 +23,16 @@
         android:name="com.example.randma3.ui.fragments.location.LocationFragment"
         android:label="fragment_location"
         tools:layout="@layout/fragment_location" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.randma3.ui.fragments.detail.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+
+        <argument
+            android:name="id"
+            app:argType="string"
+            android:defaultValue="0" />
+    </fragment>
+
 </navigation>
