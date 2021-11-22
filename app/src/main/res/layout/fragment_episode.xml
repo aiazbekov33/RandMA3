@@ -1,32 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.episode.EpisodeFragment">
 
-    <TextView
-        android:id="@+id/txt_title"
+    <ProgressBar
+        android:id="@+id/loader_episode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Episode" />
+        android:layout_gravity="center"
+        android:visibility="gone"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/open_detail_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Open"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:cornerRadius="20dp"
-        android:layout_marginTop="25dp"
-        app:layout_constraintTop_toBottomOf="@id/txt_title"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycler_episode"
+        tools:listitem="@layout/item_episode"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

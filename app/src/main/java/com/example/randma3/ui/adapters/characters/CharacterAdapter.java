@@ -1,4 +1,4 @@
-package com.example.randma3.ui.adapters;
+package com.example.randma3.ui.adapters.characters;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

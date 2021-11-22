@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class RickAndMortyResponse<T> extends Character {
+public class RickAndMortyResponse<T> {
     @SerializedName("info")
     private Info info;
 
@@ -20,8 +20,8 @@ public class RickAndMortyResponse<T> extends Character {
         this.info = info;
     }
 
-    public ArrayList<Character> getResults() {
-        return (ArrayList<Character>) results;
+    public ArrayList<T> getResults() {
+        return (ArrayList<T>) results;
     }
 
     public void setResults(ArrayList<T> results) {

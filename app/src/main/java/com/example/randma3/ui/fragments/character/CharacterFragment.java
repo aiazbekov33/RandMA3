@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.randma3.databinding.FragmentCharacterBinding;
-import com.example.randma3.ui.adapters.CharacterAdapter;
+import com.example.randma3.ui.adapters.characters.CharacterAdapter;
 
 
 public class CharacterFragment extends Fragment {
@@ -75,10 +75,7 @@ public class CharacterFragment extends Fragment {
                 binding.recyclerCharacter.setVisibility(View.VISIBLE);
             }
         });
-
     }
-
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

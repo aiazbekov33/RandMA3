@@ -1,18 +1,15 @@
 package com.example.randma3.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 
 import com.example.randma3.R;
 import com.example.randma3.databinding.ActivityMainBinding;
-import com.example.randma3.ui.adapters.CharacterAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
