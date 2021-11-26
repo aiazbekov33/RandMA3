@@ -2,6 +2,7 @@ package com.example.randma3.data.network;
 
 import com.example.randma3.data.network.apiservices.CharacterApiServices;
 import com.example.randma3.data.network.apiservices.EpisodeApiServices;
+import com.example.randma3.data.network.apiservices.LocationApiServices;
 
 import java.util.concurrent.TimeUnit;
 
@@ -36,5 +37,8 @@ public class RetrofitClient {
 
     public EpisodeApiServices provideEpisodeApiService() {
         return provideRetrofit.create(EpisodeApiServices.class);
+    }
+    public LocationApiServices provideLocationApiService(){
+        return provideRetrofit.create(LocationApiServices.class);
     }
 }

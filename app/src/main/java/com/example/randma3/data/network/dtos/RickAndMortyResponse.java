@@ -1,6 +1,5 @@
 package com.example.randma3.data.network.dtos;
 
-import com.example.randma3.data.network.dtos.character.Character;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;

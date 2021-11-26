@@ -7,9 +7,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface EpisodeApiServices {
-    @GET("/api/location/")
+    @GET("/api//episode/")
     Call<RickAndMortyResponse<Episode>> fetchEpisodes();
-    @GET("/api/location/{id}")
+    @GET("/api//episode/{id}")
     Call<Episode> fetchEpisode(
             @Path("id") int id
     );

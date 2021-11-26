@@ -1,6 +1,7 @@
 package com.example.randma3.ui.adapters.episode;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -43,7 +44,7 @@ public class EpisodeAdapter extends RecyclerView.Adapter<EpisodeAdapter.EpisodeV
         notifyDataSetChanged();
     }
 
-    public class EpisodeViewHolder extends RecyclerView.ViewHolder {
+    public static class EpisodeViewHolder extends RecyclerView.ViewHolder {
         private final ItemEpisodeBinding binding;
         private OnItemClickListener listener;
 
@@ -60,9 +61,7 @@ public class EpisodeAdapter extends RecyclerView.Adapter<EpisodeAdapter.EpisodeV
                     .into(binding.imageEpisode);
             binding.textEpisodeFullName.setText(episode.getName());
 
-            itemView.setOnClickListener(v ->{
-                listener.onItemClickListener(episode.getId());
-            });
+            itemView.setOnClickListener(v -> listener.onItemClickListener(episode.getId()));
         }
     }
     public void setOnItemClickListener (OnItemClickListener listener){

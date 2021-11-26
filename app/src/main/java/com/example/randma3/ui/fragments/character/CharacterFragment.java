@@ -1,5 +1,7 @@
 package com.example.randma3.ui.fragments.character;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,7 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+
 import com.example.randma3.databinding.FragmentCharacterBinding;
+import com.example.randma3.inter.OnItemClickListener;
 import com.example.randma3.ui.adapters.characters.CharacterAdapter;
 
 

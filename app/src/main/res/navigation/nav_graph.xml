@@ -19,6 +19,9 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_characterFragment_to_myDialogFragment"
+            app:destination="@id/myDialogFragment" />
 
     </fragment>
 
@@ -39,7 +42,14 @@
         android:id="@+id/locationFragment"
         android:name="com.example.randma3.ui.fragments.location.LocationFragment"
         android:label="fragment_location"
-        tools:layout="@layout/fragment_location" />
+        tools:layout="@layout/fragment_location" >
+        <action
+            android:id="@+id/action_locationFragment_to_locationDetailFragment"
+            app:destination="@id/locationDetailFragment" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/characterDetailFragment"
         android:name="com.example.randma3.ui.fragments.character.detail.CharacterDetailFragment"
@@ -55,6 +65,20 @@
         android:name="com.example.randma3.ui.fragments.episode.detail.EpisodeDetailFragment"
         android:label="fragment_episode_detail"
         tools:layout="@layout/fragment_episode_detail" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/myDialogFragment"
+        android:name="com.example.randma3.ui.fragments.MyDialogFragment"
+        android:label="fragment_dialog"
+        tools:layout="@layout/fragment_dialog" />
+    <fragment
+        android:id="@+id/locationDetailFragment"
+        android:name="com.example.randma3.ui.fragments.location.detail.LocationDetailFragment"
+        android:label="fragment_location_detail"
+        tools:layout="@layout/fragment_location_detail" >
         <argument
             android:name="id"
             app:argType="integer" />

@@ -5,16 +5,16 @@
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".ui.fragments.episode.detail.EpisodeDetailFragment">
+    tools:context=".ui.fragments.location.detail.LocationDetailFragment">
 
     <ProgressBar
-        android:id="@+id/loader_episode_detail"
+        android:id="@+id/loader_location_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:visibility="gone"/>
     <ImageView
-        android:id="@+id/type_episode_detail"
+        android:id="@+id/type_location_detail"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="20dp"
@@ -23,7 +23,7 @@
         tools:src="@tools:sample/avatars"/>
 
     <TextView
-        android:id="@+id/text_episode_detail_id"
+        android:id="@+id/text_location_detail_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -32,7 +32,7 @@
         android:textColor="@color/purple_500"
         tools:text="@tools:sample/date/day_of_week"/>
     <TextView
-        android:id="@+id/text_episode_detail_full_name"
+        android:id="@+id/text_location_detail_full_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -40,6 +40,7 @@
         android:textSize="18sp"
         tools:text="@tools:sample/full_names"
         android:textColor="@color/black"/>
+
 
 
 </LinearLayout>
