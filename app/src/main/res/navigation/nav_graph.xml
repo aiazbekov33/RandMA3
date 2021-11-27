@@ -69,11 +69,18 @@
             android:name="id"
             app:argType="integer" />
     </fragment>
-    <fragment
+
+    <dialog
         android:id="@+id/myDialogFragment"
         android:name="com.example.randma3.ui.fragments.MyDialogFragment"
         android:label="fragment_dialog"
-        tools:layout="@layout/fragment_dialog" />
+        tools:layout="@layout/fragment_dialog" >
+        <argument
+            android:name="image"
+            app:argType="string"
+            />
+    </dialog>
+
     <fragment
         android:id="@+id/locationDetailFragment"
         android:name="com.example.randma3.ui.fragments.location.detail.LocationDetailFragment"

@@ -1,8 +1,8 @@
 package com.example.randma3.ui.adapters.characters;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -64,10 +64,15 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
             itemView.setOnClickListener(v -> {
                 listener.onItemClickListener(character.getId());
             });
+            itemView.setOnLongClickListener(v -> {
+                listener.onItemLongClickListener(character.getImage());
+                return false;
+            });
         }
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
+
 }

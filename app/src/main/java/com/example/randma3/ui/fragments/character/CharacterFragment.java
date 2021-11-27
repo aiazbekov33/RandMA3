@@ -1,7 +1,5 @@
 package com.example.randma3.ui.fragments.character;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,10 +8,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import com.example.randma3.databinding.FragmentCharacterBinding;
 import com.example.randma3.inter.OnItemClickListener;
@@ -56,10 +54,20 @@ public class CharacterFragment extends Fragment {
     }
 
     private void setupListeners() {
-        characterAdapter.setOnItemClickListener(id -> {
-            Navigation.findNavController(requireView()).navigate(
-                    CharacterFragmentDirections.actionCharacterFragmentToCharacterDetailFragment().setId(id)
-            );
+        characterAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClickListener(int id) {
+                Navigation.findNavController(requireView()).navigate(
+                        CharacterFragmentDirections.actionCharacterFragmentToCharacterDetailFragment().setId(id)
+                );
+            }
+
+            @Override
+            public void onItemLongClickListener(String image) {
+                Navigation.findNavController(requireView()).navigate(
+                        CharacterFragmentDirections.actionCharacterFragmentToMyDialogFragment(image)
+                );
+            }
         });
     }
 
@@ -81,6 +89,7 @@ public class CharacterFragment extends Fragment {
             }
         });
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

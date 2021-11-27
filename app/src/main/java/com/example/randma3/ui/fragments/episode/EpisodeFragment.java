@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.randma3.databinding.FragmentEpisodeBinding;
+import com.example.randma3.inter.OnItemClickListener;
 import com.example.randma3.ui.adapters.episode.EpisodeAdapter;
 
 
@@ -53,10 +54,19 @@ public class EpisodeFragment extends Fragment {
     }
 
     private void setupListeners() {
-        episodeAdapter.setOnItemClickListener(id -> {
-            Navigation.findNavController(requireView()).navigate(
-                    EpisodeFragmentDirections.actionEpisodeFragmentToEpisodeDetailFragment(id).setId(id)
-            );
+
+        episodeAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClickListener(int id) {
+                Navigation.findNavController(requireView()).navigate(
+                        EpisodeFragmentDirections.actionEpisodeFragmentToEpisodeDetailFragment(id).setId(id)
+                );
+            }
+
+            @Override
+            public void onItemLongClickListener(String image) {
+
+            }
         });
     }
 

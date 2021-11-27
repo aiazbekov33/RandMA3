@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.randma3.data.network.dtos.location.Location;
 import com.example.randma3.databinding.FragmentLocationBinding;
+import com.example.randma3.inter.OnItemClickListener;
 import com.example.randma3.ui.adapters.location.LocationAdapter;
 
 import java.time.LocalDate;
@@ -56,10 +57,19 @@ public class LocationFragment extends Fragment {
     }
 
     private void setupListener() {
-        locationAdapter.setOnItemClickListener(id -> {
-            Navigation.findNavController(requireView()).navigate(
-                    LocationFragmentDirections.actionLocationFragmentToLocationDetailFragment(id).setId(id)
-            );
+
+        locationAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClickListener(int id) {
+                Navigation.findNavController(requireView()).navigate(
+                        LocationFragmentDirections.actionLocationFragmentToLocationDetailFragment(id).setId(id)
+                );
+            }
+
+            @Override
+            public void onItemLongClickListener(String image) {
+
+            }
         });
     }
 
