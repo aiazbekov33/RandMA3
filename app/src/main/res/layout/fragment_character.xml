@@ -18,4 +18,12 @@
         android:id="@+id/recycler_character"
         tools:listitem="@layout/item_character"/>
 
+    <ProgressBar
+        android:id="@+id/character_bar"
+        android:layout_gravity="center|bottom"
+        android:visibility="invisible"
+        android:foregroundGravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 </FrameLayout>

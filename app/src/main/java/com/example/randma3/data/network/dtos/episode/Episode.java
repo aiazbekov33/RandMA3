@@ -9,8 +9,17 @@ public class Episode {
     @SerializedName("name")
     private  String name;
 
-    @SerializedName("type")
-    private String type;
+    @SerializedName("air_date")
+    private String air_date;
+
+    @SerializedName("episode")
+    private  String episode;
+
+    @SerializedName("url")
+    private String url;
+
+    @SerializedName("created")
+    private  String created;
 
     public int getId() {
         return id;
@@ -28,11 +37,35 @@ public class Episode {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public String getAir_date() {
+        return air_date;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setAir_date(String air_date) {
+        this.air_date = air_date;
+    }
+
+    public String getEpisode() {
+        return episode;
+    }
+
+    public void setEpisode(String episode) {
+        this.episode = episode;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
     }
 }

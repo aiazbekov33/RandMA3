@@ -13,14 +13,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:visibility="gone"/>
-    <ImageView
-        android:id="@+id/type_location_detail"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        tools:ignore="ContentDescription"
-        tools:src="@tools:sample/avatars"/>
 
     <TextView
         android:id="@+id/text_location_detail_id"
@@ -31,6 +23,7 @@
         android:textSize="20sp"
         android:textColor="@color/purple_500"
         tools:text="@tools:sample/date/day_of_week"/>
+
     <TextView
         android:id="@+id/text_location_detail_full_name"
         android:layout_width="wrap_content"
@@ -41,6 +34,44 @@
         tools:text="@tools:sample/full_names"
         android:textColor="@color/black"/>
 
+    <TextView
+        android:id="@+id/text_location_detail_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="12sp"
+        tools:text="@tools:sample/full_names"
+        android:textColor="@color/black"/>
 
+    <TextView
+        android:id="@+id/text_location_detail_dimension"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        tools:text="@tools:sample/full_names"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/text_location_detail_url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        tools:text="@tools:sample/full_names"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/text_location_detail_created"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        tools:text="@tools:sample/full_names"
+        android:textColor="@color/black"/>
 
 </LinearLayout>

@@ -1,23 +1,24 @@
 package com.example.randma3.ui.adapters.characters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.randma3.data.network.dtos.character.Character;
 import com.example.randma3.databinding.ItemCharacterBinding;
 import com.example.randma3.inter.OnItemClickListener;
 
-import java.util.ArrayList;
+public class CharacterAdapter extends ListAdapter<Character,CharacterAdapter.CharacterViewHolder> {
 
-public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder> {
+    public OnItemClickListener listener;
 
-    private ArrayList<Character> list = new ArrayList<>();
-    private OnItemClickListener listener;
+    public CharacterAdapter(){
+        super(new CharacterDiffUtil());
+    }
 
     @NonNull
     @Override
@@ -31,17 +32,7 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
 
     @Override
     public void onBindViewHolder(@NonNull CharacterViewHolder holder, int position) {
-        holder.onBind(list.get(position));
-    }
-
-    @Override
-    public int getItemCount() {
-        return list.size();
-    }
-
-    public void submitList(ArrayList<Character> list) {
-        this.list.addAll(list);
-        notifyDataSetChanged();
+        holder.onBind(getItem(position));
     }
 
     public static class CharacterViewHolder extends RecyclerView.ViewHolder {
@@ -65,14 +56,27 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
                 listener.onItemClickListener(character.getId());
             });
             itemView.setOnLongClickListener(v -> {
-                listener.onItemLongClickListener(character.getImage());
+                listener.onItemLongClickListener(getAdapterPosition(),character);
                 return false;
             });
+        }
+    }
+
+    private static class CharacterDiffUtil extends DiffUtil.ItemCallback<Character>{
+
+        @Override
+        public boolean areItemsTheSame(@NonNull Character oldItem, @NonNull Character newItem) {
+            return oldItem.getId() == newItem.getId();
+        }
+
+        @SuppressLint("DiffUtilEquals")
+        @Override
+        public boolean areContentsTheSame(@NonNull Character oldItem, @NonNull Character newItem) {
+            return oldItem == newItem;
         }
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
-
 }

@@ -13,6 +13,15 @@ public class Location {
     @SerializedName("type")
     private String type;
 
+    @SerializedName("dimension")
+    private  String dimension;
+
+    @SerializedName("url")
+    private String url;
+
+    @SerializedName("created")
+    private  String created;
+
     public int getId() {
         return id;
     }
@@ -35,5 +44,29 @@ public class Location {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getDimension() {
+        return dimension;
+    }
+
+    public void setDimension(String dimension) {
+        this.dimension = dimension;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
     }
 }

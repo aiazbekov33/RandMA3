@@ -1,16 +1,12 @@
 package com.example.randma3.ui.fragments;
 
-import android.app.Dialog;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.bumptech.glide.Glide;
 import com.example.randma3.databinding.FragmentDialogBinding;
 

@@ -3,28 +3,30 @@ package com.example.randma3.ui.fragments.episode;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import com.example.randma3.base.BaseFragment;
+import com.example.randma3.data.network.dtos.RickAndMortyResponse;
+import com.example.randma3.data.network.dtos.character.Character;
+import com.example.randma3.data.network.dtos.episode.Episode;
 import com.example.randma3.databinding.FragmentEpisodeBinding;
 import com.example.randma3.inter.OnItemClickListener;
 import com.example.randma3.ui.adapters.episode.EpisodeAdapter;
+import java.util.ArrayList;
 
 
-public class EpisodeFragment extends Fragment {
+public class EpisodeFragment extends BaseFragment <EpisodeViewModel, FragmentEpisodeBinding> {
 
-    private EpisodeViewModel viewModel;
-    private FragmentEpisodeBinding binding;
-    private EpisodeAdapter episodeAdapter = new EpisodeAdapter();
-
+    EpisodeAdapter adapter = new EpisodeAdapter();
+    private LinearLayoutManager layoutManager;
+    private int totalItemCount, visibleItemCount, postVisibleItem;
+    private ArrayList<Episode> episodes = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,29 +35,16 @@ public class EpisodeFragment extends Fragment {
         return binding.getRoot();
            }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initialize();
-        setupListeners();
-        setupRequests();
-        setupObservers();
 
-    }
-
-    private void initialize() {
+    protected void initialize() {
+        layoutManager = new LinearLayoutManager(getContext());
         viewModel = new ViewModelProvider(this).get(EpisodeViewModel.class);
-        setupEpisodeRecycler();
+        binding.recyclerEpisode.setLayoutManager(layoutManager);
+        binding.recyclerEpisode.setAdapter(adapter);
     }
 
-    private void setupEpisodeRecycler() {
-        binding.recyclerEpisode.setLayoutManager(new LinearLayoutManager(requireContext()));
-        binding.recyclerEpisode.setAdapter(episodeAdapter);
-    }
-
-    private void setupListeners() {
-
-        episodeAdapter.setOnItemClickListener(new OnItemClickListener() {
+    protected void setupListener() {
+        adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClickListener(int id) {
                 Navigation.findNavController(requireView()).navigate(
@@ -64,21 +53,14 @@ public class EpisodeFragment extends Fragment {
             }
 
             @Override
-            public void onItemLongClickListener(String image) {
+            public void onItemLongClickListener(int position, Character model) {
 
             }
         });
     }
 
-    private void setupRequests() {
-        viewModel.fetchEpisodes();
-    }
-
-    private void setupObservers() {
-        viewModel.episode.observe(getViewLifecycleOwner(), episodes -> {
-            episodeAdapter.submitList(episodes.getResults());
-        });
-        viewModel.isLoading.observe(getViewLifecycleOwner(), isLoading ->{
+     protected void setupObservers() {
+        viewModel.loadingEpisodes().observe(getViewLifecycleOwner(), isLoading ->{
             if (isLoading){
                 binding.loaderEpisode.setVisibility(View.VISIBLE);
                 binding.recyclerEpisode.setVisibility(View.GONE);
@@ -87,8 +69,48 @@ public class EpisodeFragment extends Fragment {
                 binding.recyclerEpisode.setVisibility(View.VISIBLE);
             }
         });
-    }
-
+        viewModel.fetchEpisodes().observe(getViewLifecycleOwner(), new Observer<RickAndMortyResponse<Episode>>() {
+            @Override
+            public void onChanged(RickAndMortyResponse<Episode> episode) {
+                if (episode != null){
+                    episodes.addAll(episode.getResults());
+                    adapter.submitList(episodes);
+                    String next = episode.getInfo().getNext();
+                    if (next != null) {
+                        binding.recyclerEpisode.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                            @Override
+                            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                                super.onScrolled(recyclerView, dx, dy);
+                                if (dy > 0) {
+                                    viewModel.loadingEpisodes().observe(getViewLifecycleOwner(), isLoading -> {
+                                        if (isLoading) {
+                                            binding.loaderEpisode.setVisibility(View.GONE);
+                                            binding.recyclerEpisode.setVisibility(View.VISIBLE);
+                                            binding.episodeBar.setVisibility(View.VISIBLE);
+                                        } else {
+                                            binding.episodeBar.setVisibility(View.GONE);
+                                        }
+                                    });
+                                    visibleItemCount = layoutManager.getChildCount();
+                                    totalItemCount = layoutManager.getItemCount();
+                                    postVisibleItem = layoutManager.findFirstVisibleItemPosition();
+                                    if ((visibleItemCount + postVisibleItem) >= totalItemCount) {
+                                        viewModel.page++;
+                                        viewModel.fetchEpisodes().observe(getViewLifecycleOwner(), episodeModelRickAndMortyResponse -> {
+                                            if (episodeModelRickAndMortyResponse != null) {
+                                                episodes.addAll(episodeModelRickAndMortyResponse.getResults());
+                                                adapter.submitList(episodes);
+                                            }
+                                        });
+                                    }
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        });
+     }
     @Override
     public void onDestroyView() {
         super.onDestroyView();

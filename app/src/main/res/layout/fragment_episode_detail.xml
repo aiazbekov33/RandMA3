@@ -13,14 +13,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:visibility="gone"/>
-    <ImageView
-        android:id="@+id/type_episode_detail"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        tools:ignore="ContentDescription"
-        tools:src="@tools:sample/avatars"/>
 
     <TextView
         android:id="@+id/text_episode_detail_id"
@@ -40,6 +32,48 @@
         android:textSize="18sp"
         tools:text="@tools:sample/full_names"
         android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/text_episode_detail_air_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="12sp"
+        tools:text="@tools:sample/full_names"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/text_episode_detail_episode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        tools:text="@tools:sample/full_names"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/text_episode_detail_url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        tools:text="@tools:sample/full_names"
+        android:textColor="@color/black"/>
+
+
+    <TextView
+        android:id="@+id/text_episode_detail_created"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        tools:text="@tools:sample/full_names"
+        android:textColor="@color/black"/>
+
 
 
 </LinearLayout>

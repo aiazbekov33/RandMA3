@@ -3,9 +3,7 @@ package com.example.randma3.data.network;
 import com.example.randma3.data.network.apiservices.CharacterApiServices;
 import com.example.randma3.data.network.apiservices.EpisodeApiServices;
 import com.example.randma3.data.network.apiservices.LocationApiServices;
-
 import java.util.concurrent.TimeUnit;
-
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;

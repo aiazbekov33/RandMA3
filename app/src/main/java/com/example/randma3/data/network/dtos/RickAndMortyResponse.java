@@ -1,10 +1,10 @@
 package com.example.randma3.data.network.dtos;
 
 import com.google.gson.annotations.SerializedName;
-
 import java.util.ArrayList;
 
 public class RickAndMortyResponse<T> {
+
     @SerializedName("info")
     private Info info;
 
