@@ -1,7 +1,6 @@
 package com.example.randma3.ui.fragments.location;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -11,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.example.randma3.base.BaseFragment;
 import com.example.randma3.data.network.dtos.RickAndMortyResponse;
 import com.example.randma3.data.network.dtos.character.Character;
@@ -18,12 +19,17 @@ import com.example.randma3.data.network.dtos.location.Location;
 import com.example.randma3.databinding.FragmentLocationBinding;
 import com.example.randma3.inter.OnItemClickListener;
 import com.example.randma3.ui.adapters.location.LocationAdapter;
+import com.example.randma3.ui.fragments.character.CharacterFragmentDirections;
+
 import java.util.ArrayList;
 
+import dagger.hilt.android.AndroidEntryPoint;
 
+@AndroidEntryPoint
 public class LocationFragment extends BaseFragment<LocationViewModel, FragmentLocationBinding> {
 
     LocationAdapter adapter = new LocationAdapter();
+
     private LinearLayoutManager layoutManager;
     private int totalItemCount, visibleItemCount, postVisibleItem;
     private ArrayList<Location> locations = new ArrayList<>();
@@ -47,19 +53,39 @@ public class LocationFragment extends BaseFragment<LocationViewModel, FragmentLo
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClickListener(int id) {
-                Navigation.findNavController(requireView()).navigate(
-                        LocationFragmentDirections.actionLocationFragmentToLocationDetailFragment(id).setId(id)
-                );
+                if (!isOnline()) {
+                    Navigation.findNavController(requireView()).navigate(
+                            CharacterFragmentDirections.actionCharacterFragmentToMyDialogFragment2("").setConnectionChecked(true)
+                    );
+                } else {
+                    Navigation.findNavController(requireView()).navigate(
+                            LocationFragmentDirections.actionLocationFragmentToLocationDetailFragment(id).setId(id)
+                    );
+                }
             }
 
             @Override
             public void onItemLongClickListener(int position, Character model) {
-
             }
         });
     }
 
     protected void setupObservers() {
+        if (!isOnline()) {
+            if (viewModel.getLocation().isEmpty()) {
+                Toast.makeText(getContext(), "НЕТ ДАННЫХ", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "OFF-LINE", Toast.LENGTH_SHORT).show();
+                adapter.submitList(viewModel.getLocation());
+            }
+
+        } else {
+            viewModel.fetchLocations().observe(getViewLifecycleOwner(), characterRickAndMortyResponse -> {
+                if (characterRickAndMortyResponse != null) {
+                    locations.addAll(characterRickAndMortyResponse.getResults());
+                    adapter.submitList(locations);
+                }
+            });
         viewModel.loadingLocations().observe(getViewLifecycleOwner(), isLoading ->{
             if (isLoading){
                 binding.loaderLocation.setVisibility(View.VISIBLE);
@@ -111,6 +137,8 @@ public class LocationFragment extends BaseFragment<LocationViewModel, FragmentLo
             }
         });
     }
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

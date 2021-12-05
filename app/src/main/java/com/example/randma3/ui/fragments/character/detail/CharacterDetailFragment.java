@@ -10,6 +10,9 @@ import com.example.randma3.R;
 import com.example.randma3.base.BaseFragment;
 import com.example.randma3.databinding.FragmentCharacterDetailBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class CharacterDetailFragment extends BaseFragment<CharacterDetailViewModel, FragmentCharacterDetailBinding> {
 
     @Override
@@ -19,10 +22,12 @@ public class CharacterDetailFragment extends BaseFragment<CharacterDetailViewMod
         return binding.getRoot();
     }
 
+    @Override
     protected void initialize() {
         viewModel = new ViewModelProvider(this).get(CharacterDetailViewModel.class);
     }
 
+    @Override
     protected void setupObservers() {
         viewModel.fetchCharacter(CharacterDetailFragmentArgs.fromBundle(getArguments()).getId())
         .observe(getViewLifecycleOwner(), character -> {

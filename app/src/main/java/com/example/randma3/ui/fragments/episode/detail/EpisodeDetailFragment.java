@@ -7,8 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.example.randma3.base.BaseFragment;
 import com.example.randma3.databinding.FragmentEpisodeDetailBinding;
+import dagger.hilt.android.AndroidEntryPoint;
 
-
+@AndroidEntryPoint
 public class EpisodeDetailFragment extends BaseFragment<EpisodeDetailViewModel, FragmentEpisodeDetailBinding> {
 
     @Override
@@ -18,6 +19,7 @@ public class EpisodeDetailFragment extends BaseFragment<EpisodeDetailViewModel, 
         return binding.getRoot();
     }
 
+    @Override
     protected void initialize() {
         viewModel = new ViewModelProvider(this).get(EpisodeDetailViewModel.class);
     }

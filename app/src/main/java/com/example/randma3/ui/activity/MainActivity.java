@@ -9,6 +9,9 @@ import android.os.Bundle;
 import com.example.randma3.R;
 import com.example.randma3.databinding.ActivityMainBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;

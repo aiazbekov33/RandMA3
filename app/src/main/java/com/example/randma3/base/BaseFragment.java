@@ -1,5 +1,10 @@
 package com.example.randma3.base;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import androidx.annotation.NonNull;
@@ -7,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
-public class BaseFragment <ViewModel extends BaseViewModel, Binding extends ViewBinding> extends Fragment {
+public abstract class BaseFragment <ViewModel extends BaseViewModel, Binding extends ViewBinding> extends Fragment {
 
     protected ViewModel viewModel;
     protected Binding binding;
@@ -25,9 +30,18 @@ public class BaseFragment <ViewModel extends BaseViewModel, Binding extends View
 
     protected void setupListener() {}
 
-    private void setupRequest() {
-    }
+    protected void setupRequest() {}
 
     protected void setupObservers() {}
+
+    public boolean isOnline(){
+        ConnectivityManager connMgr = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+       NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+       if (networkInfo==null) {
+           return false;
+       }else{
+           return true;
+       }
+    }
 }
 

@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import com.example.randma3.base.BaseFragment;
 import com.example.randma3.databinding.FragmentLocationDetailBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class LocationDetailFragment extends BaseFragment<LocationDetailViewModel, FragmentLocationDetailBinding> {
 
     @Override
